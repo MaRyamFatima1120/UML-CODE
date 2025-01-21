@@ -1,0 +1,75 @@
+@startuml
+left to right direction
+
+skinparam backgroundColor #FFFFFF
+skinparam usecaseBackgroundColor #D4E6F1
+skinparam usecaseBorderColor #000000
+
+skinparam rectangleBackgroundColor #FFFFFF
+skinparam rectangleBorderColor #000000
+
+actor User
+actor Rescuer
+actor Admin
+
+rectangle "Rescue Emergency App 1122" {
+  
+  ' User Use Cases
+  User --> (Emergency Request Help)
+  (Emergency Request Help) ..> (Select Type of Emergency) : <<include>>
+  (Select Type of Emergency) <.. (Fire) : <<include>>
+  (Select Type of Emergency) <.. (Road Accident) : <<include>>
+  (Select Type of Emergency) <.. (Medical) : <<include>>
+
+  User --> (Call with Send User Location)
+  (Call with Send User Location) <.. (Confirm Location) : <<include>>
+  (Call with Send User Location) <.. (GPS Location with Rescuer) : <<include>>
+
+  User --> (View Rescuer)
+  (View Rescuer) <.. (Send Update to Rescuer) : <<extend>>
+  (View Rescuer) <.. (Track Rescuer in Real Time) : <<extend>>
+
+  User --> (Receive Notification)
+
+  User --> (View Emergency Status)
+  (View Emergency Status) <.. (Arrival Time) : <<extend>>
+  (View Emergency Status) <.. (Emergency Verification) : <<extend>>
+
+  User --> (Give Feedback)
+  (Give Feedback) <.. (Rate the Service) : <<include>>
+  (Give Feedback) <.. (Feedback with Form) : <<include>>
+  (Give Feedback) <.. (Share on Social Media) : <<include>>
+
+  User --> (Profile)
+  (Profile) <.. (Complete Profile for Accurate Information) : <<include>>
+
+  ' Rescuer Use Cases
+  Rescuer --> (Authentication)
+  (Authentication) <.. (For Completion Profile):<<include>>
+  Rescuer --> (Respond to an emergency Request)
+  (Respond to an emergency Request) <.. (View Emergency request):<<include>>
+  Rescuer --> (Check Region)
+  (Check Region) <.. (From Which Area Request Come):<<include>>
+
+  Rescuer --> (Send Help Notification to User)
+  (Send Help Notification to User) <.. (Check User Location) : <<include>>
+
+  Rescuer --> (View User and Share Self Location)
+  
+  Rescuer --> (View and Update Emergency Status)
+  (View and Update Emergency Status) <.. (Report All Details) : <<include>>
+  (View and Update Emergency Status) <.. (Send Emergency Resolve) : <<include>>
+
+  Rescuer --> (Get Service Rating from User)
+
+  ' Admin Use Cases
+  Admin --> (User Management)
+
+  Admin --> (View and Manage Emergency Request)
+  Admin --> (Assign Rescuer to Emergency Request)
+  Admin --> (Monitor Active Emergency)
+  Admin --> (System Monitoring)
+}
+
+caption "Fig1: Unified Use Case of User, Rescuer, and Admin"
+@enduml

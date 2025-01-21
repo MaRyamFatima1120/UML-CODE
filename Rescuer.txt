@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+
+skinparam backgroundColor #FFFFFF
+skinparam usecaseBackgroundColor #D4E6F1
+skinparam usecaseBorderColor #000000
+
+skinparam rectangleBackgroundColor #FFFFFF
+skinparam rectangleBorderColor #000000
+
+actor Rescuer
+
+rectangle "Rescue Emergency App 1122" {
+   Rescuer --> (Authentication)
+   (Authentication) <.. (For Completion Profile):<<include>>
+   Rescuer --> (Respond to an emergency Request)
+   (Respond to an emergency Request) <.. (View Emergency request):<<include>>
+   Rescuer --> (Check Region)
+   (Check Region) <.. (From Which Area Request Come):<<include>>
+ 
+
+  Rescuer --> (Send Help Notification to User)
+  (Send Help Notification to User) <.. (Check User Location) : <<include>>
+
+  Rescuer --> (View User and Share Self Location)
+  
+  Rescuer --> (View and Update Emergency Status)
+  (View and Update Emergency Status) <.. (Report All Details) : <<include>>
+  (View and Update Emergency Status) <.. (Send Emergency Resolve) : <<include>>
+
+  
+
+  Rescuer --> (Get Service Rating from User)
+  
+}
+caption "Fig1:Use Case of User"
+@enduml
